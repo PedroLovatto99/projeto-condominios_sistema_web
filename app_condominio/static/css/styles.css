@@ -1,0 +1,322 @@
+/* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  background-color: #333;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  color: aliceblue;
+}
+
+main {
+  padding: 5px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 4em;
+  margin-bottom: 20px;
+}
+
+.bloco div {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px; /* Ajuste o padding conforme necessário */
+  border-radius: 15px; /* Diminui o arredondamento dos cantos */
+  cursor: pointer;
+  text-align: center;
+  width: 180px;  /* Ajuste a largura */
+  height: 90px; /* Defina uma altura fixa */
+  font-size: 1.2em; /* Reduz o tamanho da fonte */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box; /* Inclui padding e bordas na altura e largura */
+}
+
+.bloco div h1 {
+  font-size: 1.5em; /* Ajuste o tamanho do título */
+  margin: 0;
+  line-height: 1; /* Reduz o espaçamento vertical do texto */
+}
+
+.bloco {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Reduz o espaço entre os blocos */
+  margin-bottom: 0; /* Remove qualquer margem inferior do contêiner */
+}
+
+.bloco div:hover {
+  background-color: #555;
+}
+
+.bloco a {
+  text-decoration: none;
+  color: #fff;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  bottom: 0;
+  margin-top: 20px;
+  margin-top: auto;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between; /* Alinha os itens nas extremidades */
+  align-items: center;
+  padding: 10px 0;
+}
+
+.btn-back button,
+.btn-logout button {
+  background-color: #2d3436;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-back button:hover,
+.btn-logout button:hover {
+  background-color: #636e72;
+}
+
+.apartamentos-residentes {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 100px; 
+}
+
+.apartamentos-residentes th,
+.apartamentos-residentes td {
+  padding: 15px;
+  text-align: left;
+}
+
+.apartamentos-residentes thead th {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.apartamentos-residentes tbody tr:nth-child(even) {
+  background-color: #dfe6e9;
+}
+
+.apartamentos-residentes tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.residente-info {
+  display: flex;
+  align-items: center;
+}
+
+.residente-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.residente-info span {
+  font-weight: bold;
+  color: #2d3436;
+}
+
+.login-container {
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.back-button {
+  display: flex;
+  justify-content: flex-start; /* Alinha o botão à esquerda */
+}
+
+.export-button {
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão à direita */
+  margin-right: 10px; /* Adiciona um pouco de espaço à direita */
+}
+
+.back-button a,
+.export-button a {
+  background-color: #2d3436;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.export-button a {
+  background-color: rgb(63, 185, 63);
+}
+
+.back-button a:hover {
+  background-color: #636e72;
+}
+
+.export-button a:hover {
+  background-color: darkgreen;
+}
+
+.btn-logout {
+  position: absolute; /* Posiciona o botão de forma absoluta */
+  top: 25px; /* Distância do topo da página */
+  right: 40px; /* Distância da borda direita da página */
+}
+
+.btn-logout a {
+  background-color: #e74c3c; /* Cor de fundo para o botão de sair */
+  color: #ffffff; /* Cor do texto */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Arredondamento das bordas */
+  text-decoration: none; /* Remove o sublinhado do link */
+  font-size: 1em; /* Tamanho da fonte */
+  transition: background-color 0.3s; /* Animação suave na mudança de cor de fundo */
+}
+
+.btn-logout a:hover {
+  background-color: #c0392b; /* Cor de fundo ao passar o mouse */
+}
+
+.pagination {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.pagination a {
+  background-color: #2d3436;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.pagination a:hover {
+  background-color: #636e72;
+}
+
+td {
+  text-align: center;
+}
+
+/* Nova estilização para o número do apartamento */
+.numero-apartamento {
+  font-weight: bold; /* Deixa o texto em negrito */
+  text-align: center; /* Centraliza o texto */
+}
+
+.btn-logout-blocos {
+  position: absolute;
+  top: 25px; 
+  right: 40px;
+}
+
+.btn-logout-blocos a {
+  background-color: #e74c3c; /* Cor de fundo para o botão de sair */
+  color: #ffffff; /* Cor do texto */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Arredondamento das bordas */
+  text-decoration: none; /* Remove o sublinhado do link */
+  font-size: 1em; /* Tamanho da fonte */
+  transition: background-color 0.3s; /* Animação suave na mudança de cor de fundo */
+}
+
+.btn-logout-blocos a:hover {
+  background-color: #c0392b; /* Cor de fundo ao passar o mouse */
+}
+
