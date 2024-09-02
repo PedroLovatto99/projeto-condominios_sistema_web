@@ -3,84 +3,193 @@
 {% block content %}
 <div class="container">
     <div class="header">
-        <h1>BLOCO {{ bloco.numero }}</h1>
+        <h1 class="sticky-header">BLOCO {{ bloco.numero }}</h1>
         <div class="btn-logout">
-            <a href="{% url 'logout' %}">Sair   <i class="fa-solid fa-right-from-bracket"></i></a>
+            <a href="{% url 'logout' %}">Sair <i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
     </div>
 
-    <div class="back-button">
-        <a href="{% url 'blocos_lista' %}"> <i class="fa-solid fa-left-long"></i>
-            Voltar para a lista de blocos
-        </a>
+    <div class="action-buttons">
+        <div class="back-button sticky-buttons">
+            <a href="{% url 'blocos_lista' %}"><i class="fa-solid fa-left-long"></i>
+                Voltar para a lista de blocos
+            </a>
+        </div>
+
+        <div class="export-button sticky-buttons">
+            <a href="{% url 'gerar_excel' bloco.id %}" class="btn btn-primary"><i class="fa-solid fa-file-excel"></i>
+                Exportar para Excel
+            </a>
+        </div>
     </div>
 
-    <div class="export-button">
-        <a href="{% url 'gerar_excel' bloco.id %}" class="btn btn-primary"><i class="fa-solid fa-file-excel"></i>  
-              Exportar para Excel
-        </a>
-    </div>
-
-    <table class="apartamentos-residentes">
-        <thead>
-            <tr>
-                <th>APARTAMENTO</th>
-                <th>RESIDENTE</th>
-                {% if user.is_superuser %}
-                    <th>CPF</th>
-                {% endif %}
-                <th>E-MAIL</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for apartamento in apartamentos %}
+    {% if user.is_superuser %}
+    <div class="apartamentos-residentes-container">
+        <table class="apartamentos-residentes">
+            <thead>
                 <tr>
-                    <td class="numero-apartamento">{{ apartamento.numero }}</td>
-                    <td>
-                        {% for residente in residentes %}
-                            {% if residente.apartamento == apartamento %}
-                                <div class="residente-info">
-                                    <img src="{{ residente.foto.url }}" alt="{{ residente.nome }}">
-                                    <span>{{ residente.nome }}</span>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                    {% if user.is_superuser %}
+                    <th>APARTAMENTO</th>
+                    <th>RESIDENTE</th>
+                    <th>CPF/CNPJ</th>
+                    <th>TELEFONE</th>
+                    <th>E-MAIL</th>
+                    <th>DATA DE INÍCIO</th>
+                    <th>DATA DE TÉRMINO</th>
+                    <th>PRORROGAÇÃO</th>
+                    <th>NÚMERO DE CADASTRO</th>
+                    <th>VALOR DO ALUGUEL</th>
+                    <th>VALOR DO CONDOMÍNIO</th>
+                    <th>OUTROS</th>
+                    <th>GÁS</th>
+                    <th>TOTAL DO BOLETO</th>
+                    <th>DATA DE VENCIMENTO</th>
+                    <th>UNIDADE CONSUMIDORA</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for apartamento in apartamentos %}
+                    <tr>
+                        <td class="numero-apartamento">{{ apartamento.numero }}</td>
                         <td>
                             {% for residente in residentes %}
                                 {% if residente.apartamento == apartamento %}
                                     <div class="residente-info">
-                                        <span>{{ residente.cpf }}</span>
+                                        <span>{{ residente.nome }}</span>
                                     </div>
                                 {% endif %}
                             {% endfor %}
                         </td>
-                    {% endif %}
-                    <td>
-                        {% for residente in residentes %}
-                            {% if residente.apartamento == apartamento %}
-                                <div class="residente-info">
-                                    <span>{{ residente.email }}</span>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <div class="pagination">
-        <span class="step-links">
-            {% if apartamentos.has_previous %}
-                <a href="?page={{ apartamentos.previous_page_number }}"> <i class="fa-solid fa-left-long"></i>  Página anterior</a>
-            {% endif %}
-            {% if apartamentos.has_next %}
-                <a href="?page={{ apartamentos.next_page_number }}">Próxima página  <i class="fa-solid fa-right-long"></i></a>
-            {% endif %}
-        </span>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>{{ residente.cpf_cnpj }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>{{ residente.telefone }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>{{ residente.email }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>{{ residente.data_inicio }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>{{ residente.data_fim }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>{{ residente.prorrogacao }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>{{ residente.numero_cadastro }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>R$ {{ residente.valor_aluguel }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>R$ {{ residente.valor_condominio }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>R$ {{ residente.outros }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>R$ {{ residente.valor_gas }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>R$ {{ boleto_total }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>{{ residente.data_vencimento }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for residente in residentes %}
+                                {% if residente.apartamento == apartamento %}
+                                    <div class="residente-info">
+                                        <span>{{ residente.unidade_consumidora }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    
+    {% endif %}
 </div>
 {% endblock %}

@@ -13,6 +13,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, Border, Side, PatternFill
 from io import BytesIO
 import openpyxl
+from django.db.models import Sum
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class BlocosListView(ListView):
@@ -28,21 +29,23 @@ class BlocoDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
         apartamentos = Apartamento.objects.filter(bloco=self.object).order_by("numero")
         
+        residentes = Residente.objects.filter(apartamento__in=apartamentos)
         
-        paginator = Paginator(apartamentos, 6)
-        page = self.request.GET.get('page')
+        boleto_total = residentes.aggregate(
+            total_aluguel=Sum('valor_aluguel'),
+            total_condominio=Sum('valor_condominio'),
+            total_gas=Sum('valor_gas'),
+            total_outros=Sum('outros')
+        )
         
-        try:
-            apartamentos_paginados = paginator.page(page)
-        except PageNotAnInteger:
-            apartamentos_paginados = paginator.page(1)
-        except EmptyPage:
-            apartamentos_paginados = paginator.page(paginator.num_pages)
-
-        context['apartamentos'] = apartamentos_paginados
-        context['residentes'] = Residente.objects.filter(apartamento__in=apartamentos_paginados)
+        total = sum(filter(None, boleto_total.values())) 
+        
+        context['apartamentos'] = apartamentos
+        context['residentes'] = residentes
+        context['boleto_total'] = total
 
         return context
 
@@ -77,9 +80,20 @@ def gerar_excel(request, bloco_id):
                     'Apartamento': apartamento.numero,
                     'Residente': residente.nome,
                     'Email': residente.email,
+                    'Telefone': residente.telefone,
+                    'Data Início Contrato': residente.data_inicio,
+                    'Data Fim Contrato': residente.data_fim,
+                    'Prorrogação': residente.prorrogacao,
+                    'Número Cadastro': residente.numero_cadastro,
+                    'Valor Aluguel': residente.valor_aluguel,
+                    'Valor Condomínio': residente.valor_condominio,
+                    'Outros Valores': residente.outros,
+                    'Valor Gás': residente.valor_gas,
+                    'Data Vencimento Boleto': residente.data_vencimento,
+                    'Unidade Consumidora': residente.unidade_consumidora,
                 }
                 if request.user.is_superuser:
-                    entry['CPF'] = residente.cpf
+                    entry['CPF/CNPJ'] = residente.cpf_cnpj
                 data.append(entry)
 
     # Criar o DataFrame com os dados
@@ -99,19 +113,29 @@ def gerar_excel(request, bloco_id):
         # Adicionar título com o número do bloco
         bloco = Bloco.objects.get(pk=bloco_id)
         worksheet.insert_rows(1)  # Inserir uma nova linha no topo
-        worksheet.merge_cells('A1:D1')  # Mesclar células para o título
+        worksheet.merge_cells('A1:N1')  # Mesclar células para o título, considerando todas as colunas
         worksheet['A1'] = f'Bloco {bloco.numero}'
         worksheet['A1'].font = Font(bold=True, size=16, color="000000")  # Negrito, tamanho 16, cor preta
         worksheet['A1'].alignment = Alignment(horizontal='center', vertical='center')
         worksheet['A1'].fill = PatternFill(start_color="FFFF99", end_color="FFFF99", fill_type="solid")  # Cor de fundo
 
         # Ajustar a largura das colunas
-        worksheet.column_dimensions['A'].width = 15
-        worksheet.column_dimensions['B'].width = 20
-        worksheet.column_dimensions['C'].width = 30  # Ajuste conforme necessário
-        if 'CPF' in df.columns:
-            worksheet.column_dimensions['D'].width = 20
-        worksheet.column_dimensions['E'].width = 30
+        worksheet.column_dimensions['A'].width = 15  # Apartamento
+        worksheet.column_dimensions['B'].width = 20  # Residente
+        worksheet.column_dimensions['C'].width = 30  # Email
+        worksheet.column_dimensions['D'].width = 20  # Telefone
+        worksheet.column_dimensions['E'].width = 20  # Data Início Contrato
+        worksheet.column_dimensions['F'].width = 20  # Data Fim Contrato
+        worksheet.column_dimensions['G'].width = 20  # Prorrogação
+        worksheet.column_dimensions['H'].width = 20  # Número Cadastro
+        worksheet.column_dimensions['I'].width = 20  # Valor Aluguel
+        worksheet.column_dimensions['J'].width = 20  # Valor Condomínio
+        worksheet.column_dimensions['K'].width = 20  # Outros Valores
+        worksheet.column_dimensions['L'].width = 20  # Valor Gás
+        worksheet.column_dimensions['M'].width = 20  # Data Vencimento Boleto
+        worksheet.column_dimensions['N'].width = 30  # Unidade Consumidora
+        if 'CPF/CNPJ' in df.columns:
+            worksheet.column_dimensions['O'].width = 20  # CPF/CNPJ
 
         # Formatação do cabeçalho
         header_font = Font(bold=True, color="FFFFFF")

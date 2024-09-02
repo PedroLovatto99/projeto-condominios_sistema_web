@@ -3,7 +3,7 @@ from .models import *
 
 
 class ResidenteAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'apartamento', 'data_nascimento', 'cpf', 'email')
+    list_display = ('nome', 'apartamento', 'cpf_cnpj', 'telefone', 'email')
 
 class ApartamentoAdmin(admin.ModelAdmin):
     list_display = ('numero', 'bloco')

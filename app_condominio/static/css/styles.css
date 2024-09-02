@@ -81,15 +81,32 @@ footer {
 }
 
 .container {
-  width: 80%;
+  width: 100%; /* Ajuste para ocupar toda a largura disponível */
+  overflow-x: auto; /* Adiciona scroll horizontal */
   margin: 0 auto;
 }
+
 
 .header {
   display: flex;
   justify-content: space-between; /* Alinha os itens nas extremidades */
   align-items: center;
   padding: 10px 0;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #f0f0f0;
+  z-index: 1000; /* Um valor alto para garantir que o header fique sobreposto */
+}
+
+.sticky-buttons {
+  position: sticky;
+  top: 40px; /* Ajuste conforme necessário para evitar sobreposição com o título */
+  z-index: 1000;
+  background-color: #f0f0f0;
+  padding: 5px 0;
 }
 
 .btn-back button,
@@ -116,13 +133,15 @@ footer {
 
 .apartamentos-residentes th,
 .apartamentos-residentes td {
-  padding: 15px;
-  text-align: left;
+  padding: 15px 30px; /* Aumenta o espaçamento entre as colunas */
+  text-align: center; /* Centraliza o conteúdo das células */
+  white-space: nowrap; /* Garante que o texto não quebre dentro das células */
 }
 
 .apartamentos-residentes thead th {
   background-color: #000000;
   color: #ffffff;
+  border-left: 2px solid white;
 }
 
 .apartamentos-residentes tbody tr:nth-child(even) {
@@ -133,21 +152,33 @@ footer {
   background-color: #ffffff;
 }
 
+.apartamentos-residentes thead th:first-child {
+  position: sticky; /* Fixa o cabeçalho da primeira coluna */
+  left: 0;
+  z-index: 2;
+  background-color: #000000; /* Cor de fundo para o cabeçalho fixo */
+}
+
+.apartamentos-residentes td:first-child {
+  background-color: #ffffff; /* Cor de fundo para as células fixas */
+}
+
 .residente-info {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Adiciona espaço entre as informações dos residentes */
 }
 
 .residente-info img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .residente-info span {
-  font-weight: bold;
-  color: #2d3436;
+    font-weight: bold;
+    color: #2d3436;
 }
 
 .login-container {
@@ -271,23 +302,18 @@ footer {
   background-color: #c0392b; /* Cor de fundo ao passar o mouse */
 }
 
-.pagination {
-  text-align: center;
-  padding-bottom: 20px;
+.apartamentos-residentes-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  position: relative;
 }
 
-.pagination a {
-  background-color: #2d3436;
-  color: #ffffff;
-  padding: 10px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 1em;
-  transition: background-color 0.3s;
-}
-
-.pagination a:hover {
-  background-color: #636e72;
+.apartamentos-residentes {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  min-width: 1200px; /* Define a largura mínima da tabela */
 }
 
 td {
@@ -296,8 +322,12 @@ td {
 
 /* Nova estilização para o número do apartamento */
 .numero-apartamento {
-  font-weight: bold; /* Deixa o texto em negrito */
-  text-align: center; /* Centraliza o texto */
+  font-weight: bold;
+  text-align: center;
+  position: sticky; /* Fixa a coluna */
+  left: 0;
+  z-index: 1; /* Garante que a coluna fique acima das outras ao rolar */
+  background-color: #fff; /* Cor de fundo para a coluna fixa */
 }
 
 .btn-logout-blocos {
