@@ -31,21 +31,16 @@ class BlocoDetail(DetailView):
         context = super().get_context_data(**kwargs)
         
         apartamentos = Apartamento.objects.filter(bloco=self.object).order_by("numero")
-        
         residentes = Residente.objects.filter(apartamento__in=apartamentos)
         
-        boleto_total = residentes.aggregate(
-            total_aluguel=Sum('valor_aluguel'),
-            total_condominio=Sum('valor_condominio'),
-            total_gas=Sum('valor_gas'),
-            total_outros=Sum('outros')
-        )
-        
-        total = sum(filter(None, boleto_total.values())) 
-        
+        for residente in residentes:
+            residente.total_boleto = (residente.valor_aluguel or 0) + \
+                                     (residente.valor_condominio or 0) + \
+                                     (residente.valor_gas or 0) + \
+                                     (residente.outros or 0)
+
         context['apartamentos'] = apartamentos
         context['residentes'] = residentes
-        context['boleto_total'] = total
 
         return context
 
@@ -76,6 +71,8 @@ def gerar_excel(request, bloco_id):
     for apartamento in apartamentos:
         for residente in residentes:
             if residente.apartamento == apartamento:
+                total_boleto = (residente.valor_aluguel or 0) + (residente.valor_condominio or 0) + (residente.valor_gas or 0) + (residente.outros or 0)
+                
                 entry = {
                     'Apartamento': apartamento.numero,
                     'Residente': residente.nome,
@@ -91,6 +88,7 @@ def gerar_excel(request, bloco_id):
                     'Valor Gás': residente.valor_gas,
                     'Data Vencimento Boleto': residente.data_vencimento,
                     'Unidade Consumidora': residente.unidade_consumidora,
+                    'Total Boleto': total_boleto,  # Adicionar o total individual do boleto
                 }
                 if request.user.is_superuser:
                     entry['CPF/CNPJ'] = residente.cpf_cnpj
@@ -113,7 +111,7 @@ def gerar_excel(request, bloco_id):
         # Adicionar título com o número do bloco
         bloco = Bloco.objects.get(pk=bloco_id)
         worksheet.insert_rows(1)  # Inserir uma nova linha no topo
-        worksheet.merge_cells('A1:N1')  # Mesclar células para o título, considerando todas as colunas
+        worksheet.merge_cells('A1:O1')  # Mesclar células para o título, considerando todas as colunas
         worksheet['A1'] = f'Bloco {bloco.numero}'
         worksheet['A1'].font = Font(bold=True, size=16, color="000000")  # Negrito, tamanho 16, cor preta
         worksheet['A1'].alignment = Alignment(horizontal='center', vertical='center')
@@ -134,8 +132,9 @@ def gerar_excel(request, bloco_id):
         worksheet.column_dimensions['L'].width = 20  # Valor Gás
         worksheet.column_dimensions['M'].width = 20  # Data Vencimento Boleto
         worksheet.column_dimensions['N'].width = 30  # Unidade Consumidora
+        worksheet.column_dimensions['O'].width = 20  # Total Boleto
         if 'CPF/CNPJ' in df.columns:
-            worksheet.column_dimensions['O'].width = 20  # CPF/CNPJ
+            worksheet.column_dimensions['P'].width = 20  # CPF/CNPJ
 
         # Formatação do cabeçalho
         header_font = Font(bold=True, color="FFFFFF")

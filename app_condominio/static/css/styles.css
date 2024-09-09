@@ -1,24 +1,44 @@
-/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   background-color: #f0f0f0;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/simbolo-fundo.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right;
+  background-size: auto;
+  opacity: 0.1;
+  z-index: -1; 
 }
 
 header {
-  background-color: #333;
+  background-color: #f0f0f0;
   padding: 20px;
   text-align: center;
+  box-shadow: 0 -3px 20px 0px #717171;
+  position: inherit;
 }
 
 header h1 {
   margin: 0;
-  color: aliceblue;
+  color: #333;
 }
 
 main {
@@ -27,9 +47,10 @@ main {
 }
 
 h2 {
-  font-size: 4em;
-  margin-bottom: 20px;
+  font-size: 3em;
+  margin-bottom: 10px;
 }
+
 
 .bloco div {
   background-color: #000;
@@ -71,17 +92,32 @@ h2 {
 }
 
 footer {
-  background-color: #333;
-  color: #fff;
+  background-color: #f0f0f0;
+  color: #333;
   text-align: center;
   padding: 10px;
   bottom: 0;
   margin-top: 20px;
   margin-top: auto;
+  box-shadow: 0 -3px 20px 0px #717171;
+  position: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.logoFundacao img {
+  height: 80px;
+  width: 250px;
+}
+
+.logoRecanto img {
+  height: 100px;
+  width: 220px;
 }
 
 .container {
-  width: 100%; /* Ajuste para ocupar toda a largura disponível */
+  width: 92%; /* Ajuste para ocupar toda a largura disponível */
   overflow-x: auto; /* Adiciona scroll horizontal */
   margin: 0 auto;
 }
@@ -94,18 +130,50 @@ footer {
   padding: 10px 0;
 }
 
+header h2 {
+  margin: 0;
+  font-size: 10px; /* Ajuste o tamanho da fonte do nome do usuário */
+  color: #333;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em; /* Ajuste o tamanho da fonte do título */
+  text-shadow: -1px 1px 3px #443a40(3, 0, 0, 0.38);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative; /* Permite o uso de posicionamento absoluto dentro do container */
+}
+
+.header-container h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Centraliza o título "Condomínio" */
+  margin: 0;
+}
+
+.header-container h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
 .sticky-header {
   position: sticky;
   top: 0;
-  background-color: #f0f0f0;
   z-index: 1000; /* Um valor alto para garantir que o header fique sobreposto */
+  
 }
 
 .sticky-buttons {
   position: sticky;
   top: 40px; /* Ajuste conforme necessário para evitar sobreposição com o título */
   z-index: 1000;
-  background-color: #f0f0f0;
   padding: 5px 0;
 }
 
@@ -122,6 +190,7 @@ footer {
 .btn-back button:hover,
 .btn-logout button:hover {
   background-color: #636e72;
+  
 }
 
 .apartamentos-residentes {
@@ -131,32 +200,39 @@ footer {
   margin-bottom: 100px; 
 }
 
+
 .apartamentos-residentes th,
 .apartamentos-residentes td {
   padding: 15px 30px; /* Aumenta o espaçamento entre as colunas */
   text-align: center; /* Centraliza o conteúdo das células */
   white-space: nowrap; /* Garante que o texto não quebre dentro das células */
+  
+
 }
 
 .apartamentos-residentes thead th {
   background-color: #000000;
   color: #ffffff;
-  border-left: 2px solid white;
+  border-left: 2px solid gray;
+  background-color: #922022;
 }
 
 .apartamentos-residentes tbody tr:nth-child(even) {
-  background-color: #dfe6e9;
+  background-color: white;
+  
 }
 
 .apartamentos-residentes tbody tr:nth-child(odd) {
-  background-color: #ffffff;
+  background-color: white;
 }
+
+
 
 .apartamentos-residentes thead th:first-child {
   position: sticky; /* Fixa o cabeçalho da primeira coluna */
   left: 0;
   z-index: 2;
-  background-color: #000000; /* Cor de fundo para o cabeçalho fixo */
+  background-color: #922022;
 }
 
 .apartamentos-residentes td:first-child {
@@ -268,6 +344,7 @@ footer {
   text-decoration: none;
   font-size: 1em;
   transition: background-color 0.3s;
+  border: 1px solid black;
 }
 
 .export-button a {
@@ -282,11 +359,6 @@ footer {
   background-color: darkgreen;
 }
 
-.btn-logout {
-  position: absolute; /* Posiciona o botão de forma absoluta */
-  top: 25px; /* Distância do topo da página */
-  right: 40px; /* Distância da borda direita da página */
-}
 
 .btn-logout a {
   background-color: #e74c3c; /* Cor de fundo para o botão de sair */
@@ -314,10 +386,12 @@ footer {
   margin-top: 20px;
   border-collapse: collapse;
   min-width: 1200px; /* Define a largura mínima da tabela */
+  border: 2px solid black;
 }
 
 td {
   text-align: center;
+  border: 2px solid gray;
 }
 
 /* Nova estilização para o número do apartamento */
@@ -349,4 +423,5 @@ td {
 .btn-logout-blocos a:hover {
   background-color: #c0392b; /* Cor de fundo ao passar o mouse */
 }
+
 

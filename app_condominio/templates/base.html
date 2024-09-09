@@ -8,12 +8,14 @@
 </head>
 <body>
   <header>
-    <h1 style="color: aliceblue;">Condomínio</h1>
+    <div class="header-container">
+      <h2><i class="fa-solid fa-user"></i> {{ user.username }}</h2>
+      <h1 style="color: #922022;">Condomínio Residencial Recanto Maestro</h1>
+      <div class="btn-logout">
+        <a href="{% url 'logout' %}">Sair <i class="fa-solid fa-right-from-bracket"></i></a>
+      </div>
+    </div>
   </header>
-  
-    <div class="btn-logout">
-      <a href="{% url 'logout' %}">Sair   <i class="fa-solid fa-right-from-bracket"></i></a>
-  </div>
 
   <main>
     {% block content %}
@@ -21,7 +23,13 @@
   </main>
 
   <footer>
-    <p>&copy;</p>
+    <div class="logoFundacao">
+      <img src="{% static 'img/Fundacao.png' %}" alt="Logo da Fundação">
+    </div>
+    <p style="color: #922022; font-weight: bold;">2024 Copyright &copy; | Todos os direitos reservados</p>
+    <div class="logoRecanto">
+      <img src="{% static 'img/recanto-maestro.png' %}" alt="Logo do Recanto Maestro">
+    </div>
   </footer>
 </body>
 </html>

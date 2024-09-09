@@ -4,9 +4,6 @@
 <div class="container">
     <div class="header">
         <h1 class="sticky-header">BLOCO {{ bloco.numero }}</h1>
-        <div class="btn-logout">
-            <a href="{% url 'logout' %}">Sair <i class="fa-solid fa-right-from-bracket"></i></a>
-        </div>
     </div>
 
     <div class="action-buttons">
@@ -22,35 +19,36 @@
             </a>
         </div>
     </div>
-
-    {% if user.is_superuser %}
+    
     <div class="apartamentos-residentes-container">
         <table class="apartamentos-residentes">
             <thead>
                 <tr>
                     <th>APARTAMENTO</th>
-                    <th>RESIDENTE</th>
+                    <th>RESIDENTE(S)</th>
                     <th>CPF/CNPJ</th>
                     <th>TELEFONE</th>
                     <th>E-MAIL</th>
                     <th>DATA DE INÍCIO</th>
                     <th>DATA DE TÉRMINO</th>
                     <th>PRORROGAÇÃO</th>
-                    <th>NÚMERO DE CADASTRO</th>
-                    <th>VALOR DO ALUGUEL</th>
-                    <th>VALOR DO CONDOMÍNIO</th>
-                    <th>OUTROS</th>
-                    <th>GÁS</th>
-                    <th>TOTAL DO BOLETO</th>
-                    <th>DATA DE VENCIMENTO</th>
-                    <th>UNIDADE CONSUMIDORA</th>
+                    {% if user.is_superuser %}
+                        <th>NÚMERO DE CADASTRO</th> 
+                        <th>VALOR DO ALUGUEL</th>
+                        <th>VALOR DO CONDOMÍNIO</th>
+                        <th>OUTROS</th>
+                        <th>GÁS</th>
+                        <th>TOTAL DO BOLETO</th>
+                        <th>DATA DE VENCIMENTO</th>
+                        <th>UNIDADE CONSUMIDORA</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
                 {% for apartamento in apartamentos %}
                     <tr>
                         <td class="numero-apartamento">{{ apartamento.numero }}</td>
-                        <td>
+                        <td >
                             {% for residente in residentes %}
                                 {% if residente.apartamento == apartamento %}
                                     <div class="residente-info">
@@ -113,11 +111,12 @@
                                 {% endif %}
                             {% endfor %}
                         </td>
-                        <td>
+                        {% if user.is_superuser %}
+                        <td>    
                             {% for residente in residentes %}
                                 {% if residente.apartamento == apartamento %}
                                     <div class="residente-info">
-                                        <span>{{ residente.numero_cadastro }}</span>
+                                        <span style="margin-left: 55px;">{{ residente.numero_cadastro }}</span>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -126,7 +125,7 @@
                             {% for residente in residentes %}
                                 {% if residente.apartamento == apartamento %}
                                     <div class="residente-info">
-                                        <span>R$ {{ residente.valor_aluguel }}</span>
+                                        <span style="margin-left: 50px;">R$ {{ residente.valor_aluguel }}</span>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -135,7 +134,7 @@
                             {% for residente in residentes %}
                                 {% if residente.apartamento == apartamento %}
                                     <div class="residente-info">
-                                        <span>R$ {{ residente.valor_condominio }}</span>
+                                        <span style="margin-left: 50px;">R$ {{ residente.valor_condominio }}</span>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -162,7 +161,7 @@
                             {% for residente in residentes %}
                                 {% if residente.apartamento == apartamento %}
                                     <div class="residente-info">
-                                        <span>R$ {{ boleto_total }}</span>
+                                        <span style="margin-left: 25px;">R$ {{ residente.total_boleto }}</span>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -180,16 +179,16 @@
                             {% for residente in residentes %}
                                 {% if residente.apartamento == apartamento %}
                                     <div class="residente-info">
-                                        <span>{{ residente.unidade_consumidora }}</span>
+                                        <span style="margin-left: 50px;">{{ residente.unidade_consumidora }}</span>
                                     </div>
                                 {% endif %}
                             {% endfor %}
                         </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    {% endif %}
 </div>
 {% endblock %}

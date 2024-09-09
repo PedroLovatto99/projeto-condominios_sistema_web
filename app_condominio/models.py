@@ -36,10 +36,9 @@ class Residente(models.Model):
     valor_condominio = models.FloatField(verbose_name="Valor do Condomínio", null=True, blank=True)
     outros = models.FloatField(verbose_name="Outros valores a pagar", null=True, blank=True)
     valor_gas = models.FloatField(verbose_name="Valor do Gás", null=True, blank=True)
-    # total_boleto = models.FloatField(verbose_name="Total do Boleto", null=True, blank=True)
     data_vencimento = models.DateField(verbose_name="Data de Vencimento do boleto", null=True, blank=True)
     unidade_consumidora = models.CharField(verbose_name="Unidade Consumidora", null=True, blank=True, max_length=100)
-
+    
     class Meta:
         verbose_name = "Residente"
         verbose_name_plural = "Residentes"
