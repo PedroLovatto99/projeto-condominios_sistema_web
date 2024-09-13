@@ -52,6 +52,7 @@ h2 {
 }
 
 
+
 .bloco div {
   background-color: #000;
   color: #fff;
@@ -66,13 +67,20 @@ h2 {
   align-items: center;
   justify-content: center;
   box-sizing: border-box; /* Inclui padding e bordas na altura e largura */
+  border: 2px solid black;
 }
 
 .bloco div h1 {
   font-size: 1.5em; /* Ajuste o tamanho do título */
   margin: 0;
   line-height: 1; /* Reduz o espaçamento vertical do texto */
+  text-shadow: 
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000; /* Adiciona um contorno preto ao redor do texto */
 }
+
 
 .bloco {
   display: flex;
@@ -89,6 +97,7 @@ h2 {
 .bloco a {
   text-decoration: none;
   color: #fff;
+  text-transform: uppercase; /* Transforma o texto em maiúsculas */
 }
 
 footer {
@@ -108,7 +117,7 @@ footer {
 
 .logoFundacao img {
   height: 80px;
-  width: 250px;
+  width: 200px;
 }
 
 .logoRecanto img {
@@ -125,7 +134,7 @@ footer {
 
 .header {
   display: flex;
-  justify-content: space-between; /* Alinha os itens nas extremidades */
+  justify-content: center; /* Alinha os itens nas extremidades */
   align-items: center;
   padding: 10px 0;
 }
@@ -167,7 +176,13 @@ header h1 {
   position: sticky;
   top: 0;
   z-index: 1000; /* Um valor alto para garantir que o header fique sobreposto */
-  
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: black;
+  box-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5%;
+  color: white;
+  border: 0.5px solid white;
 }
 
 .sticky-buttons {
@@ -193,6 +208,7 @@ header h1 {
   
 }
 
+
 .apartamentos-residentes {
   width: 100%;
   border-collapse: collapse;
@@ -207,14 +223,16 @@ header h1 {
   text-align: center; /* Centraliza o conteúdo das células */
   white-space: nowrap; /* Garante que o texto não quebre dentro das células */
   
-
 }
+
 
 .apartamentos-residentes thead th {
   background-color: #000000;
   color: #ffffff;
   border-left: 2px solid gray;
-  background-color: #922022;
+  position: sticky;
+  top: 0;
+  z-index: 2; /* Garante que os cabeçalhos fiquem sobrepostos ao conteúdo */
 }
 
 .apartamentos-residentes tbody tr:nth-child(even) {
@@ -231,8 +249,10 @@ header h1 {
 .apartamentos-residentes thead th:first-child {
   position: sticky; /* Fixa o cabeçalho da primeira coluna */
   left: 0;
-  z-index: 2;
-  background-color: #922022;
+  z-index: 5;
+  padding-left: 5px;
+  padding-right: 5px;
+  
 }
 
 .apartamentos-residentes td:first-child {
@@ -376,9 +396,11 @@ header h1 {
 
 .apartamentos-residentes-container {
   overflow-x: auto;
-  overflow-y: hidden;
+  max-height: 700px; /* Defina a altura que desejar */
+  overflow-y: auto;
   width: 100%;
   position: relative;
+  direction: rtl;
 }
 
 .apartamentos-residentes {
@@ -387,11 +409,13 @@ header h1 {
   border-collapse: collapse;
   min-width: 1200px; /* Define a largura mínima da tabela */
   border: 2px solid black;
+  direction: ltr;
 }
+
 
 td {
   text-align: center;
-  border: 2px solid gray;
+  border: 0.2px solid gray;
 }
 
 /* Nova estilização para o número do apartamento */
@@ -424,4 +448,75 @@ td {
   background-color: #c0392b; /* Cor de fundo ao passar o mouse */
 }
 
+@media (max-width: 425px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr; /* Um único bloco por linha */
+    grid-gap: 10px; /* Espaçamento entre os itens */
+  }
+
+  .header-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Centraliza o conteúdo */
+    justify-items: center; /* Centraliza o conteúdo em cada célula */
+  }
+
+  header h1 {
+    font-size: 1.5em; /* Reduz o tamanho do título para telas menores */
+    text-align: center; /* Centraliza o texto */
+  }
+
+  header h2 {
+    font-size: 12px; /* Reduz o tamanho do nome do usuário */
+  }
+
+  .btn-logout {
+    justify-self: center; /* Centraliza o botão de logout */
+  }
+
+  .apartamentos-residentes-container {
+    overflow-x: auto;
+    max-height: 500px; /* Ajusta a altura máxima */
+    width: 100%;
+  }
+
+  .apartamentos-residentes {
+    min-width: 800px; /* Define uma largura mínima para permitir o scroll horizontal */
+  }
+
+  .residente-info {
+    flex-direction: column; /* Alinha a imagem e o texto em uma coluna */
+    align-items: center;
+    text-align: center;
+  }
+
+  .residente-info img {
+    margin-bottom: 5px; /* Espaçamento entre a imagem e o nome do residente */
+  }
+
+  .bloco div {
+    width: 100%; /* Faz com que os blocos ocupem 100% da largura disponível */
+    height: auto; /* Ajusta a altura automaticamente */
+  }
+
+  .bloco {
+    display: grid;
+    grid-template-columns: 1fr; /* Um bloco por linha */
+    grid-gap: 10px;
+  }
+
+  .sticky-buttons {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .btn-back button, .btn-logout button {
+    width: 100%; /* Faz os botões ocuparem toda a largura */
+  }
+
+  .export-button {
+    justify-self: center; /* Centraliza o botão de exportação */
+  }
+  
+}
 

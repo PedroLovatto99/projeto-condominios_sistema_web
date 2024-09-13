@@ -2,7 +2,13 @@ from django.db import models
 
 
 class Bloco(models.Model):
-    numero = models.PositiveIntegerField()
+    CORES_SELECT = [
+        ("#FFD700", "Amarelo"),
+        ("#1F497D", "Azul"),
+        ("#00B050", "Verde"),
+    ]
+    numero = models.PositiveIntegerField(verbose_name="Número")
+    cor = models.CharField(max_length=7, choices=CORES_SELECT, null=True, blank=True)
 
     class Meta:
         verbose_name = "Bloco"
@@ -13,7 +19,7 @@ class Bloco(models.Model):
 
 class Apartamento(models.Model):
     bloco = models.ForeignKey(Bloco, on_delete=models.PROTECT)
-    numero = models.PositiveIntegerField()
+    numero = models.PositiveIntegerField(verbose_name="Número")
 
     class Meta:
         verbose_name = "Apartamento"

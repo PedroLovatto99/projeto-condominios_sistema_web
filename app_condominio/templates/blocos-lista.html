@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>BLOCOS</h2>
+<h2 style="font-style: oblique; color: #922022; padding: 0px;">BLOCOS</h2>
 <div class="container">
     <div class="bloco">
         {% if blocos %}
             {% for bloco in blocos %}
-                <div>
+                <div  style="background-color: {{ bloco.cor }};">   <!-- erro de sintaxa do css, dá para ignorar -->
                     <a href="{% url 'bloco' bloco.pk %}"><h1>Bloco {{ bloco.numero }}</h1></a>
                 </div>
             {% endfor %}
