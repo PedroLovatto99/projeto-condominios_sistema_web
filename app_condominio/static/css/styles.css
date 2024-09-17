@@ -448,30 +448,50 @@ td {
   background-color: #c0392b; /* Cor de fundo ao passar o mouse */
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
+  * {
+    box-sizing: border-box;
+  }
+
   .container {
     display: grid;
     grid-template-columns: 1fr; /* Um único bloco por linha */
     grid-gap: 10px; /* Espaçamento entre os itens */
+     overflow-x: hidden; 
   }
 
   .header-container {
-    display: grid;
-    grid-template-columns: 1fr; /* Centraliza o conteúdo */
-    justify-items: center; /* Centraliza o conteúdo em cada célula */
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinha verticalmente os itens */
+    padding: 10px; /* Adiciona um espaçamento interno */
   }
 
   header h1 {
-    font-size: 1.5em; /* Reduz o tamanho do título para telas menores */
-    text-align: center; /* Centraliza o texto */
+    font-size: 1.2rem;
+    margin-right: auto; /* Empurra o título para o lado esquerdo */
   }
 
   header h2 {
-    font-size: 12px; /* Reduz o tamanho do nome do usuário */
+    font-size: 1rem;
+    margin-left: 20px; /* Adiciona um espaçamento entre o nome de usuário e o título */
   }
 
-  .btn-logout {
-    justify-self: center; /* Centraliza o botão de logout */
+  
+.btn-logout {
+  margin-left: 50px; /* Espaçamento entre o nome de usuário e o botão de logout */
+  
+}
+
+header h1, header h2 {
+  display: inline-block; /* Garante que os elementos fiquem na mesma linha */
+  
+}
+
+  .header-container h2 {
+    justify-self: right;
+    margin-right: 40px;
+    font-size: 15px;
   }
 
   .apartamentos-residentes-container {
@@ -481,7 +501,8 @@ td {
   }
 
   .apartamentos-residentes {
-    min-width: 800px; /* Define uma largura mínima para permitir o scroll horizontal */
+     /* Define uma largura mínima para permitir o scroll horizontal */
+    min-width: 100%;
   }
 
   .residente-info {
@@ -517,6 +538,165 @@ td {
   .export-button {
     justify-self: center; /* Centraliza o botão de exportação */
   }
+
+  .bloco div {
+    height: 100px; /* Define a altura igual à largura da tela (quadrado) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.bloco {
+    display: grid;
+    grid-template-columns: 1fr; /* Um bloco por linha */
+    grid-gap: 10px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column; /* Organiza os elementos em uma coluna */
+  align-items: center; /* Centraliza os elementos horizontalmente */
+  text-align: center; /* Centraliza o texto */
+  gap: 10px; /* Espaçamento entre os itens */
+  width: 100%;
+}
+
+footer img {
+  max-width: 100%; /* Garante que as imagens não ultrapassem a largura do container */
+  height: auto; /* Mantém a proporção das imagens */
+}
+
+footer .copyright-text {
+  font-size: 14px; /* Ajusta o tamanho do texto */
+  margin: 10px 0; /* Espaçamento entre o texto e as imagens */
+}
+
+}
+
+@media (max-width: 425px) {
+  * {
+    box-sizing: border-box;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr; /* Um único bloco por linha */
+    grid-gap: 10px; /* Espaçamento entre os itens */
+     overflow-x: hidden; 
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinha verticalmente os itens */
+    padding: 10px; /* Adiciona um espaçamento interno */
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+    margin-right: auto; /* Empurra o título para o lado esquerdo */
+  }
+
+  header h2 {
+    font-size: 1rem;
+    margin-left: 20px; /* Adiciona um espaçamento entre o nome de usuário e o título */
+  }
+
+  
+.btn-logout {
+  margin-left: 50px; /* Espaçamento entre o nome de usuário e o botão de logout */
+  
+}
+
+header h1, header h2 {
+  display: inline-block; /* Garante que os elementos fiquem na mesma linha */
+  
+}
+
+  .header-container h2 {
+    justify-self: right;
+    margin-right: 40px;
+    font-size: 15px;
+  }
+
+  .apartamentos-residentes-container {
+    overflow-x: auto;
+    max-height: 500px; /* Ajusta a altura máxima */
+    width: 100%;
+  }
+
+  .apartamentos-residentes {
+     /* Define uma largura mínima para permitir o scroll horizontal */
+    min-width: 100%;
+  }
+
+  .residente-info {
+    flex-direction: column; /* Alinha a imagem e o texto em uma coluna */
+    align-items: center;
+    text-align: center;
+  }
+
+  .residente-info img {
+    margin-bottom: 5px; /* Espaçamento entre a imagem e o nome do residente */
+  }
+
+  .bloco div {
+    width: 100%; /* Faz com que os blocos ocupem 100% da largura disponível */
+    height: auto; /* Ajusta a altura automaticamente */
+  }
+
+  .bloco {
+    display: grid;
+    grid-template-columns: 1fr; /* Um bloco por linha */
+    grid-gap: 10px;
+  }
+
+  .sticky-buttons {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .btn-back button, .btn-logout button {
+    width: 100%; /* Faz os botões ocuparem toda a largura */
+  }
+
+  .export-button {
+    justify-self: center; /* Centraliza o botão de exportação */
+  }
+
+  .bloco div {
+    height: 100px; /* Define a altura igual à largura da tela (quadrado) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.bloco {
+    display: grid;
+    grid-template-columns: 1fr; /* Um bloco por linha */
+    grid-gap: 10px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column; /* Organiza os elementos em uma coluna */
+  align-items: center; /* Centraliza os elementos horizontalmente */
+  text-align: center; /* Centraliza o texto */
+  gap: 10px; /* Espaçamento entre os itens */
+  width: 100%;
+}
+
+footer img {
+  max-width: 100%; /* Garante que as imagens não ultrapassem a largura do container */
+  height: auto; /* Mantém a proporção das imagens */
+}
+
+footer .copyright-text {
+  font-size: 14px; /* Ajusta o tamanho do texto */
+  margin: 10px 0; /* Espaçamento entre o texto e as imagens */
+}
   
 }
 
