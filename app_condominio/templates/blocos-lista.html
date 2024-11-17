@@ -3,6 +3,15 @@
 {% block content %}
 <h2 style="font-style: oblique; color: #922022; padding: 0px;">BLOCOS</h2>
 <div class="container">
+    <div class="action-buttons">
+        {% if user.is_superuser %}
+        <div class="export-button sticky-buttons">
+            <a href="{% url 'gerar_excel_todos_blocos' %}" class="btn btn-primary" >
+                <i class="fa-solid fa-file-excel"></i> Exportar planilha de Todos os Blocos
+            </a>
+        </div>
+        {% endif %}
+    </div>
     <div class="bloco">
         {% if blocos %}
             {% for bloco in blocos %}

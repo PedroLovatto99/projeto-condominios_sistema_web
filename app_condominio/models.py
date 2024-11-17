@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Bloco(models.Model):
     CORES_SELECT = [
         ("#FFD700", "Amarelo"),
@@ -51,3 +50,4 @@ class Residente(models.Model):
 
     def __str__(self):
         return self.nome + " - "+ str(self.apartamento)
+    

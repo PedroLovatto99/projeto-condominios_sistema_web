@@ -13,11 +13,13 @@
             </a>
         </div>
 
+        {% if user.is_superuser %}
         <div class="export-button sticky-buttons">
             <a href="{% url 'gerar_excel' bloco.id %}" class="btn btn-primary"><i class="fa-solid fa-file-excel"></i>
-                Exportar para Excel
+                Exportar planilha
             </a>
         </div>
+        {% endif %}
     </div>
     
     <div class="apartamentos-residentes-container">
