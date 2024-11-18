@@ -6,7 +6,7 @@ class Bloco(models.Model):
         ("#1F497D", "Azul"),
         ("#00B050", "Verde"),
     ]
-    numero = models.PositiveIntegerField(verbose_name="Número")
+    numero = models.PositiveIntegerField(verbose_name="Número", unique=True)
     cor = models.CharField(max_length=7, choices=CORES_SELECT)
 
     class Meta:
@@ -30,9 +30,9 @@ class Apartamento(models.Model):
 class Residente(models.Model):
     nome = models.CharField(max_length=100)
     apartamento = models.ForeignKey(Apartamento, on_delete=models.PROTECT)
-    cpf_cnpj = models.CharField(verbose_name="CPF/CNPJ", max_length=18)
+    cpf_cnpj = models.CharField(verbose_name="CPF/CNPJ", max_length=18, unique=True)
     telefone = models.CharField(verbose_name="Telefone", max_length=15)
-    email = models.EmailField(verbose_name="E-mail")
+    email = models.EmailField(verbose_name="E-mail", unique=True)
     data_inicio = models.DateField(verbose_name="Data de Início do contrato")
     data_fim = models.DateField(verbose_name="Data de Término do contrato")
     prorrogacao = models.DateField(verbose_name="Data de Prorrogação do Contrato", null=True, blank=True)
@@ -42,7 +42,7 @@ class Residente(models.Model):
     outros = models.FloatField(verbose_name="Outros valores a pagar", null=True, blank=True)
     valor_gas = models.FloatField(verbose_name="Valor do Gás", null=True, blank=True)
     data_vencimento = models.DateField(verbose_name="Data de Vencimento do boleto", null=True, blank=True)
-    unidade_consumidora = models.CharField(verbose_name="Unidade Consumidora", null=True, blank=True, max_length=100)
+    unidade_consumidora = models.CharField(verbose_name="Unidade Consumidora", null=True, blank=True, max_length=100, unique=True)
     
     class Meta:
         verbose_name = "Residente"
