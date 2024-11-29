@@ -1,4 +1,3 @@
-<title>Condomínio Manager</title>
 </head>
 <body>
   <h1>Condomínio Manager</h1>
