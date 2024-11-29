@@ -353,6 +353,7 @@ header h1 {
   display: flex;
   justify-content: flex-end; /* Alinha o botão à direita */
   margin-right: 10px; /* Adiciona um pouco de espaço à direita */
+  margin-bottom: 30px;
 }
 
 .back-button a,
