@@ -1,4 +1,5 @@
-</head>
+<h3>O README terá mais atualizações</h3>
+
 <body>
   <h1>Condomínio Manager</h1>
   <p><strong>Condomínio Manager</strong> é um sistema web desenvolvido com Django para o gerenciamento do condomínio residencial do <strong>Recanto Maestro</strong>. O sistema permite que administradores realizem cadastro, edição, remoção e visualização de blocos, apartamentos e residentes, podendo gerar tabelas Excel das informações de um bloco específico ou de todos os blocos para fins de controle do histórico de mudanças. O sistema possui autenticação baseada em níveis de acesso para garantir que informações confidenciais sejam exibidas apenas a usuários autorizados.</p>
