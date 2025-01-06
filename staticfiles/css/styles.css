@@ -1,0 +1,703 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/simbolo-fundo.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right;
+  background-size: auto;
+  opacity: 0.1;
+  z-index: -1; 
+}
+
+header {
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 -3px 20px 0px #717171;
+  position: inherit;
+}
+
+header h1 {
+  margin: 0;
+  color: #333;
+}
+
+main {
+  padding: 5px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+
+
+.bloco div {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px; /* Ajuste o padding conforme necessário */
+  border-radius: 15px; /* Diminui o arredondamento dos cantos */
+  cursor: pointer;
+  text-align: center;
+  width: 180px;  /* Ajuste a largura */
+  height: 90px; /* Defina uma altura fixa */
+  font-size: 1.2em; /* Reduz o tamanho da fonte */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box; /* Inclui padding e bordas na altura e largura */
+  border: 2px solid black;
+}
+
+.bloco div h1 {
+  font-size: 1.5em; /* Ajuste o tamanho do título */
+  margin: 0;
+  line-height: 1; /* Reduz o espaçamento vertical do texto */
+  text-shadow: 
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000; /* Adiciona um contorno preto ao redor do texto */
+}
+
+
+.bloco {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Reduz o espaço entre os blocos */
+  margin-bottom: 0; /* Remove qualquer margem inferior do contêiner */
+}
+
+.bloco div:hover {
+  background-color: #555;
+}
+
+.bloco a {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase; /* Transforma o texto em maiúsculas */
+}
+
+footer {
+  background-color: #f0f0f0;
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  bottom: 0;
+  margin-top: 20px;
+  margin-top: auto;
+  box-shadow: 0 -3px 20px 0px #717171;
+  position: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.logoFundacao img {
+  height: 80px;
+  width: 200px;
+}
+
+.logoRecanto img {
+  height: 100px;
+  width: 220px;
+}
+
+.container {
+  width: 92%; /* Ajuste para ocupar toda a largura disponível */
+  overflow-x: auto; /* Adiciona scroll horizontal */
+  margin: 0 auto;
+}
+
+
+.header {
+  display: flex;
+  justify-content: center; /* Alinha os itens nas extremidades */
+  align-items: center;
+  padding: 10px 0;
+}
+
+header h2 {
+  margin: 0;
+  font-size: 10px; /* Ajuste o tamanho da fonte do nome do usuário */
+  color: #333;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em; /* Ajuste o tamanho da fonte do título */
+  text-shadow: -1px 1px 3px #443a40(3, 0, 0, 0.38);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative; /* Permite o uso de posicionamento absoluto dentro do container */
+}
+
+.header-container h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Centraliza o título "Condomínio" */
+  margin: 0;
+}
+
+.header-container h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Um valor alto para garantir que o header fique sobreposto */
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: black;
+  box-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5%;
+  color: white;
+  border: 0.5px solid white;
+}
+
+.sticky-buttons {
+  position: sticky;
+  top: 40px; /* Ajuste conforme necessário para evitar sobreposição com o título */
+  z-index: 1000;
+  padding: 5px 0;
+}
+
+.btn-back button,
+.btn-logout button {
+  background-color: #2d3436;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-back button:hover,
+.btn-logout button:hover {
+  background-color: #636e72;
+  
+}
+
+
+.apartamentos-residentes {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 100px; 
+}
+
+
+.apartamentos-residentes th,
+.apartamentos-residentes td {
+  padding: 15px 30px; /* Aumenta o espaçamento entre as colunas */
+  text-align: center; /* Centraliza o conteúdo das células */
+  white-space: nowrap; /* Garante que o texto não quebre dentro das células */
+  
+}
+
+
+.apartamentos-residentes thead th {
+  background-color: #000000;
+  color: #ffffff;
+  border-left: 2px solid gray;
+  position: sticky;
+  top: 0;
+  z-index: 2; /* Garante que os cabeçalhos fiquem sobrepostos ao conteúdo */
+}
+
+.apartamentos-residentes tbody tr:nth-child(even) {
+  background-color: white;
+  
+}
+
+.apartamentos-residentes tbody tr:nth-child(odd) {
+  background-color: white;
+}
+
+
+
+.apartamentos-residentes thead th:first-child {
+  position: sticky; /* Fixa o cabeçalho da primeira coluna */
+  left: 0;
+  z-index: 5;
+  padding-left: 5px;
+  padding-right: 5px;
+  
+}
+
+.apartamentos-residentes td:first-child {
+  background-color: #ffffff; /* Cor de fundo para as células fixas */
+}
+
+.residente-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Adiciona espaço entre as informações dos residentes */
+}
+
+.residente-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.residente-info span {
+    font-weight: bold;
+    color: #2d3436;
+}
+
+.login-container {
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.back-button {
+  display: flex;
+  justify-content: flex-start; /* Alinha o botão à esquerda */
+}
+
+.export-button {
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão à direita */
+  margin-right: 10px; /* Adiciona um pouco de espaço à direita */
+  margin-bottom: 30px;
+}
+
+.back-button a,
+.export-button a {
+  background-color: #2d3436;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  border: 1px solid black;
+}
+
+.export-button a {
+  background-color: rgb(63, 185, 63);
+}
+
+.back-button a:hover {
+  background-color: #636e72;
+}
+
+.export-button a:hover {
+  background-color: darkgreen;
+}
+
+
+.btn-logout a {
+  background-color: #e74c3c; /* Cor de fundo para o botão de sair */
+  color: #ffffff; /* Cor do texto */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Arredondamento das bordas */
+  text-decoration: none; /* Remove o sublinhado do link */
+  font-size: 1em; /* Tamanho da fonte */
+  transition: background-color 0.3s; /* Animação suave na mudança de cor de fundo */
+}
+
+.btn-logout a:hover {
+  background-color: #c0392b; /* Cor de fundo ao passar o mouse */
+}
+
+.apartamentos-residentes-container {
+  overflow-x: auto;
+  max-height: 700px; /* Defina a altura que desejar */
+  overflow-y: auto;
+  width: 100%;
+  position: relative;
+  direction: rtl;
+}
+
+.apartamentos-residentes {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  min-width: 1200px; /* Define a largura mínima da tabela */
+  border: 2px solid black;
+  direction: ltr;
+}
+
+
+td {
+  text-align: center;
+  border: 0.2px solid gray;
+}
+
+/* Nova estilização para o número do apartamento */
+.numero-apartamento {
+  font-weight: bold;
+  text-align: center;
+  position: sticky; /* Fixa a coluna */
+  left: 0;
+  z-index: 1; /* Garante que a coluna fique acima das outras ao rolar */
+  background-color: #fff; /* Cor de fundo para a coluna fixa */
+}
+
+.btn-logout-blocos {
+  position: absolute;
+  top: 25px; 
+  right: 40px;
+}
+
+.btn-logout-blocos a {
+  background-color: #e74c3c; /* Cor de fundo para o botão de sair */
+  color: #ffffff; /* Cor do texto */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Arredondamento das bordas */
+  text-decoration: none; /* Remove o sublinhado do link */
+  font-size: 1em; /* Tamanho da fonte */
+  transition: background-color 0.3s; /* Animação suave na mudança de cor de fundo */
+}
+
+.btn-logout-blocos a:hover {
+  background-color: #c0392b; /* Cor de fundo ao passar o mouse */
+}
+
+@media (max-width: 768px) {
+  * {
+    box-sizing: border-box;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr; /* Um único bloco por linha */
+    grid-gap: 10px; /* Espaçamento entre os itens */
+     overflow-x: hidden; 
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinha verticalmente os itens */
+    padding: 10px; /* Adiciona um espaçamento interno */
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+    margin-right: auto; /* Empurra o título para o lado esquerdo */
+  }
+
+  header h2 {
+    font-size: 1rem;
+    margin-left: 20px; /* Adiciona um espaçamento entre o nome de usuário e o título */
+  }
+
+  
+.btn-logout {
+  margin-left: 50px; /* Espaçamento entre o nome de usuário e o botão de logout */
+  
+}
+
+header h1, header h2 {
+  display: inline-block; /* Garante que os elementos fiquem na mesma linha */
+  
+}
+
+  .header-container h2 {
+    justify-self: right;
+    margin-right: 40px;
+    font-size: 15px;
+  }
+
+  .apartamentos-residentes-container {
+    overflow-x: auto;
+    max-height: 500px; /* Ajusta a altura máxima */
+    width: 100%;
+  }
+
+  .apartamentos-residentes {
+     /* Define uma largura mínima para permitir o scroll horizontal */
+    min-width: 100%;
+  }
+
+  .residente-info {
+    flex-direction: column; /* Alinha a imagem e o texto em uma coluna */
+    align-items: center;
+    text-align: center;
+  }
+
+  .residente-info img {
+    margin-bottom: 5px; /* Espaçamento entre a imagem e o nome do residente */
+  }
+
+  .bloco div {
+    width: 100%; /* Faz com que os blocos ocupem 100% da largura disponível */
+    height: auto; /* Ajusta a altura automaticamente */
+  }
+
+  .bloco {
+    display: grid;
+    grid-template-columns: 1fr; /* Um bloco por linha */
+    grid-gap: 10px;
+  }
+
+  .sticky-buttons {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .btn-back button, .btn-logout button {
+    width: 100%; /* Faz os botões ocuparem toda a largura */
+  }
+
+  .export-button {
+    justify-self: center; /* Centraliza o botão de exportação */
+  }
+
+  .bloco div {
+    height: 100px; /* Define a altura igual à largura da tela (quadrado) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.bloco {
+    display: grid;
+    grid-template-columns: 1fr; /* Um bloco por linha */
+    grid-gap: 10px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column; /* Organiza os elementos em uma coluna */
+  align-items: center; /* Centraliza os elementos horizontalmente */
+  text-align: center; /* Centraliza o texto */
+  gap: 10px; /* Espaçamento entre os itens */
+  width: 100%;
+}
+
+footer img {
+  max-width: 100%; /* Garante que as imagens não ultrapassem a largura do container */
+  height: auto; /* Mantém a proporção das imagens */
+}
+
+footer .copyright-text {
+  font-size: 14px; /* Ajusta o tamanho do texto */
+  margin: 10px 0; /* Espaçamento entre o texto e as imagens */
+}
+
+}
+
+@media (max-width: 425px) {
+  * {
+    box-sizing: border-box;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr; /* Um único bloco por linha */
+    grid-gap: 10px; /* Espaçamento entre os itens */
+     overflow-x: hidden; 
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinha verticalmente os itens */
+    padding: 10px; /* Adiciona um espaçamento interno */
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+    margin-right: auto; /* Empurra o título para o lado esquerdo */
+  }
+
+  header h2 {
+    font-size: 1rem;
+    margin-left: 20px; /* Adiciona um espaçamento entre o nome de usuário e o título */
+  }
+
+  
+.btn-logout {
+  margin-left: 50px; /* Espaçamento entre o nome de usuário e o botão de logout */
+  
+}
+
+header h1, header h2 {
+  display: inline-block; /* Garante que os elementos fiquem na mesma linha */
+  
+}
+
+  .header-container h2 {
+    justify-self: right;
+    margin-right: 40px;
+    font-size: 15px;
+  }
+
+  .apartamentos-residentes-container {
+    overflow-x: auto;
+    max-height: 500px; /* Ajusta a altura máxima */
+    width: 100%;
+  }
+
+  .apartamentos-residentes {
+     /* Define uma largura mínima para permitir o scroll horizontal */
+    min-width: 100%;
+  }
+
+  .residente-info {
+    flex-direction: column; /* Alinha a imagem e o texto em uma coluna */
+    align-items: center;
+    text-align: center;
+  }
+
+  .residente-info img {
+    margin-bottom: 5px; /* Espaçamento entre a imagem e o nome do residente */
+  }
+
+  .bloco div {
+    width: 100%; /* Faz com que os blocos ocupem 100% da largura disponível */
+    height: auto; /* Ajusta a altura automaticamente */
+  }
+
+  .bloco {
+    display: grid;
+    grid-template-columns: 1fr; /* Um bloco por linha */
+    grid-gap: 10px;
+  }
+
+  .sticky-buttons {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .btn-back button, .btn-logout button {
+    width: 100%; /* Faz os botões ocuparem toda a largura */
+  }
+
+  .export-button {
+    justify-self: center; /* Centraliza o botão de exportação */
+  }
+
+  .bloco div {
+    height: 100px; /* Define a altura igual à largura da tela (quadrado) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.bloco {
+    display: grid;
+    grid-template-columns: 1fr; /* Um bloco por linha */
+    grid-gap: 10px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column; /* Organiza os elementos em uma coluna */
+  align-items: center; /* Centraliza os elementos horizontalmente */
+  text-align: center; /* Centraliza o texto */
+  gap: 10px; /* Espaçamento entre os itens */
+  width: 100%;
+}
+
+footer img {
+  max-width: 100%; /* Garante que as imagens não ultrapassem a largura do container */
+  height: auto; /* Mantém a proporção das imagens */
+}
+
+footer .copyright-text {
+  font-size: 14px; /* Ajusta o tamanho do texto */
+  margin: 10px 0; /* Espaçamento entre o texto e as imagens */
+}
+  
+}
+
