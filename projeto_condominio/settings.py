@@ -75,16 +75,15 @@ WSGI_APPLICATION = "projeto_condominio.wsgi.application"
     #}
 #}
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': str(os.getenv('NAME_PG')),
-         'USER': str(os.getenv('USER_PG')),
-         'PASSWORD': str(os.getenv('PASSWORD_PG')),
-         'HOST': str(os.getenv('HOST_PG')),
-         'PORT': str(os.getenv('PORT_PG')),
-     }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': str(os.getenv('NAME_PG', 'condominio_db')),  # Valor padrão 'condominio_db'
+        'USER': str(os.getenv('USER_PG', 'postgres')),       # Valor padrão 'postgres'
+        'PASSWORD': str(os.getenv('PASSWORD_PG', 'senha')),  # Valor padrão 'senha'
+        'HOST': str(os.getenv('HOST_PG', 'db')),             # Valor padrão 'db' (nome do serviço no Docker)
+        'PORT': str(os.getenv('PORT_PG', '5432')),           # Valor padrão '5432'
+    }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
