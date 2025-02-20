@@ -15,8 +15,8 @@ services:
               - postgres_data:/var/lib/postgresql/data
           environment:
               - POSTGRES_USER=postgres
-              - POSTGRES_PASSWORD=postgres
-              - POSTGRES_DB=gerenciador_condominio_rm
+              - POSTGRES_PASSWORD=mlovatto
+              - POSTGRES_DB=gerenciador_condominio
 
 volumes:
     postgres_data:
