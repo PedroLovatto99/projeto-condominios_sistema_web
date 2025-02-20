@@ -77,11 +77,11 @@ WSGI_APPLICATION = "projeto_condominio.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': str(os.getenv('NAME_PG', 'condominio_db')),  # Valor padrão 'condominio_db'
-        'USER': str(os.getenv('USER_PG', 'postgres')),       # Valor padrão 'postgres'
-        'PASSWORD': str(os.getenv('PASSWORD_PG', 'postgres')),  # Valor padrão 'senha'
-        'HOST': str(os.getenv('HOST_PG', 'condominio_gerenc_db')),             # Valor padrão 'db' (nome do serviço no Docker)
-        'PORT': str(os.getenv('PORT_PG', '5432')),           # Valor padrão '5432'
+        'NAME': str(os.getenv('NAME_PG', 'gerenciador_condominio')),
+        'USER': str(os.getenv('USER_PG', 'postgres')),
+        'PASSWORD': str(os.getenv('PASSWORD_PG', 'mlovatto')),
+        'HOST': str(os.getenv('HOST_PG', 'localhost')),
+        'PORT': str(os.getenv('PORT_PG', '5432')),
     }
 }
 # Password validation
