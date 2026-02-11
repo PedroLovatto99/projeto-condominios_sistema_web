@@ -1,0 +1,12 @@
+# Ignora recursivamente tudo dentro de static
+static/** linguist-vendored
+
+# A OPÇÃO NUCLEAR:
+# Diz que TODOS os arquivos .css e .js do projeto são "de terceiros" (vendored)
+# Isso remove eles totalmente da barra de estatísticas
+*.css linguist-vendored
+# *.js linguist-vendored
+*.html linguist-vendored
+
+# Força arquivos Python a contarem
+*.py linguist-detectable=true
